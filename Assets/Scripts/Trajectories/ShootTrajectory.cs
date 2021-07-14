@@ -99,11 +99,28 @@ public class ShootTrajectory : MonoBehaviour
         allBalls["ReferenceBall"].hidden.GetComponent<Rigidbody>().useGravity = true;
 
         int steps = (int)(2f / Time.fixedDeltaTime);
+
+        for(int i = 0; i < steps; i++)
+        {
+            physicsScene.GetPhysicsScene().Simulate(Time.fixedDeltaTime);
+            CreateMovementMarkers();
+        }
     }
 
     public void SyncBalls()
     {
+        foreach (var ballType in allBalls)
+        {
+            var balls = ballType.Value;
+            Ball visual = balls.real;
+            Ball hidden = balls.hidden;
+            var rb = hidden.GetComponent<Rigidbody>();
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
 
+            hidden.transform.position = visual.transform.position;
+            hidden.transform.rotation = visual.transform.rotation;
+        }
     }
 
 }

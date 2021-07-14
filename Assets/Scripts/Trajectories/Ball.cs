@@ -6,7 +6,7 @@ public class Ball : MonoBehaviour
 {
     public bool isStatic;
     public bool isReference;
-    public float random;
+
     void Start()
     {
         if (isReference)

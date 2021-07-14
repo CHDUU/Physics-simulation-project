@@ -63,6 +63,7 @@
     <Compile Include="Assets\Scripts\Gravitation\UIBehavior.cs" />
     <Compile Include="Assets\Scripts\Gravitation\Universe.cs" />
     <Compile Include="Assets\Scripts\Trajectories\ShootTrajectory.cs" />
+    <Compile Include="Assets\Ellipse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
