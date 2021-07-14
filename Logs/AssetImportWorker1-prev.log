@@ -1,0 +1,21 @@
+Using pre-set license
+Built from '2020.3/staging' branch; Version is '2020.3.11f1 (99c7afb366b3) revision 10078127'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Home China; OS build 19042.1083; Version 2009; 64bit' Language: 'zh' Physical Memory: 4017 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+ COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2020.3.11f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker1
+-projectPath
+C:/Users/limin/Desktop/Summer project/Physics simulation project
+-logFile
+Logs/AssetImportWorker1.log
+-srvPort
+60906
+Successfully changed project path to: C:/Users/limin/Desktop/Summer project/Physics simulation project
+C:/Users/limin/Desktop/Summer project/Physics simulation project
+Using Asset Import Pipeline V2.
