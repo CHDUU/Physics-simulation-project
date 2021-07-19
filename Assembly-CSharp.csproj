@@ -56,17 +56,15 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Trajectories\Ball.cs" />
     <Compile Include="Assets\Scripts\Gravitation\BodySimulation.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Gravitation\CelestialBody.cs" />
     <Compile Include="Assets\Scripts\Gravitation\UIBehavior.cs" />
-    <Compile Include="Assets\Ellipse.cs" />
+    <Compile Include="Assets\Scripts\Gravitation\Ellipse.cs" />
     <Compile Include="Assets\Scripts\Gravitation\Universe.cs" />
-    <Compile Include="Assets\Trajectory.cs" />
-    <Compile Include="Assets\Scripts\Trajectories\ShootTrajectory.cs" />
-    <Compile Include="Assets\SliderScript.cs" />
-    <Compile Include="Assets\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Trajectories\Trajectory.cs" />
+    <Compile Include="Assets\Scripts\SliderScript.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
