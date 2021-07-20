@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     public void OptionsMenu()
     {
         Time.timeScale = 1;
+        PlayerPrefs.SetString("sceneName", SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("OptionsMenu");
     }
 

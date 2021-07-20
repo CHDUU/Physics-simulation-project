@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TrajectoryScene.unity
     guid: f0add7bc058df274d85b72fba89255c0
+  - enabled: 1
+    path: Assets/Scenes/CollisionScene.unity
+    guid: b5d15eeb80d400549a929e5ed5724902
   m_configObjects: {}
