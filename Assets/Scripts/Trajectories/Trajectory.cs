@@ -72,7 +72,7 @@ public class Trajectory : MonoBehaviour
         {
             x = velXInit * timeInterval * i;
             y = (velYInit * timeInterval * i) + height + (0.5f * acceleration * Mathf.Pow(timeInterval * i, 2));
-            points[i] = new Vector3(0.1f * x, 0.1f * y, 0);
+            points[i] = new Vector3(x, y, 0);
         }
 
         currentPoint = 0;
@@ -80,6 +80,7 @@ public class Trajectory : MonoBehaviour
 
         lr.positionCount = segments;
         lr.SetPositions(points);
+        SetText();
     }
 
     public void Step()
@@ -95,27 +96,7 @@ public class Trajectory : MonoBehaviour
             currentPoint = 0;
         }
         sphere.transform.position = points[currentPoint];
-        currentPosition.text = "Current Position:\n" + new Vector2(points[currentPoint].x, points[currentPoint].y).ToString() + " m";
-
-        if (currentPoint > 0) 
-        {
-            if (points[currentPoint].y > points[currentPoint - 1].y)
-            {
-                currVel = Mathf.Sqrt(Mathf.Pow((points[currentPoint].x - points[currentPoint - 1].x) / timeInterval, 2) + Mathf.Pow((points[currentPoint].y - points[currentPoint - 1].y) / timeInterval, 2));
-            }
-            else
-            {
-                currVel = -Mathf.Sqrt(Mathf.Pow((points[currentPoint].x - points[currentPoint - 1].x) / timeInterval, 2) + Mathf.Pow((points[currentPoint].y - points[currentPoint - 1].y) / timeInterval, 2));
-            }
-        }
-        else 
-        {
-            currVel = velInit; 
-        }
-
-        currentVelocity.text = "Current Velocity:\n" + currVel.ToString("00.00") + " m/s";
-        currentTime.text = "Current Time:\n" + (currentPoint * timeInterval).ToString("00.00") + " s";
-        
+        SetText();
     }
 
     public void PlayOrPause()
@@ -135,9 +116,31 @@ public class Trajectory : MonoBehaviour
             playText.text = "Play";
             CancelInvoke();
         }
-        
-        
-        
+    }
+
+    public void SetText()
+    {
+        currentPosition.text = "Current Position:\n" + new Vector2(points[currentPoint].x, points[currentPoint].y).ToString() + " m";
+
+        if (currentPoint > 0)
+        {
+            if (points[currentPoint].y > points[currentPoint - 1].y)
+            {
+                currVel = Mathf.Sqrt(Mathf.Pow((points[currentPoint].x - points[currentPoint - 1].x) / timeInterval, 2) + Mathf.Pow((points[currentPoint].y - points[currentPoint - 1].y) / timeInterval, 2));
+            }
+            else
+            {
+                currVel = -Mathf.Sqrt(Mathf.Pow((points[currentPoint].x - points[currentPoint - 1].x) / timeInterval, 2) + Mathf.Pow((points[currentPoint].y - points[currentPoint - 1].y) / timeInterval, 2));
+            }
+        }
+        else
+        {
+            currVel = velInit;
+        }
+
+        currentVelocity.text = "Current Velocity:\n" + currVel.ToString("00.00") + " m/s";
+        currentTime.text = "Current Time:\n" + (currentPoint * timeInterval).ToString("00.00") + " s";
+
     }
 
 }

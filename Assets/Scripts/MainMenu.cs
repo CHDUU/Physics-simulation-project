@@ -6,14 +6,34 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void OrbitScene()
+    public void StartScene()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("StartMenu");
+    }
+
+    public void OptionsScene()
+    {
+        SceneManager.LoadScene("OptionsMenu");
+    }
+
+    public void GravitationScene()
+    {
+        SceneManager.LoadScene("GravitationScene");
     }
 
     public void TrajectoryScene()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("TrajectoryScene");
+    }
+
+    public void CollisionScene()
+    {
+        SceneManager.LoadScene("CollisionScene");
+    }
+
+    public void MainMenuScene()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void Quit()
