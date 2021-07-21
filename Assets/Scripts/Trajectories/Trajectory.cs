@@ -27,6 +27,7 @@ public class Trajectory : MonoBehaviour
     public GameObject sphere;
 
     private Vector3[] points;
+    private Vector3[] arcPoints;
     private float angle;
     private float height;
     private float velInit;
@@ -44,6 +45,41 @@ public class Trajectory : MonoBehaviour
     {
         lr = GetComponent<LineRenderer>();
         currentPoint = 0;
+
+        CheckPlayerPrefs();
+        InitSetVariables();
+    }
+
+    public void InitSetVariables()
+    {
+        if (!PlayerPrefs.HasKey("angle") || !PlayerPrefs.HasKey("height") || !PlayerPrefs.HasKey("velInit") || !PlayerPrefs.HasKey("acceleration") || !PlayerPrefs.HasKey("timeInterval") || !PlayerPrefs.HasKey("totalTime"))
+        {
+            return;
+        }
+        
+        segments = (int)(totalTime / timeInterval);
+        points = new Vector3[segments];
+        arcPoints = new Vector3[segments];
+        float x = 0;
+        float y = 0;
+
+        velXInit = velInit * Mathf.Cos(Mathf.Deg2Rad * angle);
+        velYInit = velInit * Mathf.Sin(Mathf.Deg2Rad * angle);
+
+        for (int i = 0; i < segments; i++)
+        {
+            x = velXInit * timeInterval * i;
+            y = (velYInit * timeInterval * i) + height + (0.5f * acceleration * Mathf.Pow(timeInterval * i, 2));
+            points[i] = new Vector3(x, y, 0);
+            arcPoints[i] = new Vector3(x * 0.1f, y * 0.1f, 0);
+        }
+
+        currentPoint = 0;
+        sphere.transform.position = arcPoints[currentPoint];
+
+        lr.positionCount = segments;
+        lr.SetPositions(arcPoints);
+        SetText();
     }
 
     public void SetVariables()
@@ -60,8 +96,16 @@ public class Trajectory : MonoBehaviour
         timeInterval = float.Parse(timeIntField.text);
         totalTime = float.Parse(totalTimeField.text);
 
+        PlayerPrefs.SetFloat("angle", angle);
+        PlayerPrefs.SetFloat("height", height);
+        PlayerPrefs.SetFloat("velInit", velInit);
+        PlayerPrefs.SetFloat("acceleration", acceleration);
+        PlayerPrefs.SetFloat("timeInterval", timeInterval);
+        PlayerPrefs.SetFloat("totalTime", totalTime);
+
         segments = (int)(totalTime / timeInterval);
         points = new Vector3[segments];
+        arcPoints = new Vector3[segments];
         float x = 0;
         float y = 0;
 
@@ -73,13 +117,14 @@ public class Trajectory : MonoBehaviour
             x = velXInit * timeInterval * i;
             y = (velYInit * timeInterval * i) + height + (0.5f * acceleration * Mathf.Pow(timeInterval * i, 2));
             points[i] = new Vector3(x, y, 0);
+            arcPoints[i] = new Vector3(x*0.1f, y*0.1f, 0);
         }
 
         currentPoint = 0;
-        sphere.transform.position = points[currentPoint];
+        sphere.transform.position = arcPoints[currentPoint];
 
         lr.positionCount = segments;
-        lr.SetPositions(points);
+        lr.SetPositions(arcPoints);
         SetText();
     }
 
@@ -95,7 +140,7 @@ public class Trajectory : MonoBehaviour
         {
             currentPoint = 0;
         }
-        sphere.transform.position = points[currentPoint];
+        sphere.transform.position = arcPoints[currentPoint];
         SetText();
     }
 
@@ -141,6 +186,30 @@ public class Trajectory : MonoBehaviour
         currentVelocity.text = "Current Velocity:\n" + currVel.ToString("00.00") + " m/s";
         currentTime.text = "Current Time:\n" + (currentPoint * timeInterval).ToString("00.00") + " s";
 
+    }
+
+    public void CheckPlayerPrefs()
+    {
+        if (PlayerPrefs.HasKey("angle") && PlayerPrefs.HasKey("height") && PlayerPrefs.HasKey("velInit") && PlayerPrefs.HasKey("acceleration") && PlayerPrefs.HasKey("timeInterval") && PlayerPrefs.HasKey("totalTime"))
+        {
+            angle = PlayerPrefs.GetFloat("angle");
+            height = PlayerPrefs.GetFloat("height");
+            velInit = PlayerPrefs.GetFloat("velInit");
+            acceleration = PlayerPrefs.GetFloat("acceleration");
+            timeInterval = PlayerPrefs.GetFloat("timeInterval"); 
+            totalTime = PlayerPrefs.GetFloat("totalTime");
+
+            angleField.text = angle.ToString();
+            heightField.text = height.ToString();
+            velInitField.text = velInit.ToString();
+            accelerationField.text = acceleration.ToString();
+            timeIntField.text = timeInterval.ToString();
+            totalTimeField.text = totalTime.ToString();
+        }
+        else
+        {
+            return;
+        }
     }
 
 }
