@@ -1,14 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine.Audio;
 
 public class MainMenu : MonoBehaviour
 {
-
-    public AudioMixer audioMixer;
 
     public void Start()
     {
@@ -30,10 +26,6 @@ public class MainMenu : MonoBehaviour
         if (PlayerPrefs.HasKey("qualityLevel"))
         {
             QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("qualityLevel"));
-        }
-        if (PlayerPrefs.HasKey("volumeLevel"))
-        {
-            audioMixer.SetFloat("volume", PlayerPrefs.GetFloat("volumeLevel"));
         }
     }
 

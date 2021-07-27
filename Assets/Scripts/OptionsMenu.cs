@@ -4,16 +4,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine.Audio;
 
 public class OptionsMenu : MonoBehaviour
 {
 
-    public Slider volumeSlider;
     public TMP_Dropdown qualityDropdown;
     public TMP_Dropdown resolutionDropdown;
     public Toggle fullscreenToggle;
-    public AudioMixer audioMixer;
     private Resolution[] resolutions;
     private int resIndex;
 
@@ -22,7 +19,6 @@ public class OptionsMenu : MonoBehaviour
     private int resHeight;
     private int isFullscreen;
     private int qualityLevel;
-    private float volumeLevel;
 
 
     public void Start()
@@ -74,12 +70,6 @@ public class OptionsMenu : MonoBehaviour
             qualityLevel = PlayerPrefs.GetInt("qualityLevel");
         }
 
-        if (PlayerPrefs.HasKey("volumeLevel"))
-        {
-            volumeSlider.value = PlayerPrefs.GetFloat("volumeLevel");
-            volumeLevel = PlayerPrefs.GetFloat("volumeLevel");
-        }
-
 
         resolutionDropdown.onValueChanged.AddListener((value) =>
         {
@@ -87,12 +77,6 @@ public class OptionsMenu : MonoBehaviour
             resHeight = resolutions[value].height;
             Screen.SetResolution(resWidth, resHeight, Screen.fullScreen);
             resValue = value;
-        });
-
-        volumeSlider.onValueChanged.AddListener((value) =>
-        {
-            audioMixer.SetFloat("volume", value);
-            volumeLevel = value;
         });
 
         qualityDropdown.onValueChanged.AddListener((value) =>
@@ -129,6 +113,5 @@ public class OptionsMenu : MonoBehaviour
         PlayerPrefs.SetInt("resHeight", resHeight);
         PlayerPrefs.SetInt("isFullscreen", isFullscreen);
         PlayerPrefs.SetInt("qualityLevel", qualityLevel);
-        PlayerPrefs.SetFloat("volumeLevel", volumeLevel);
     }
 }

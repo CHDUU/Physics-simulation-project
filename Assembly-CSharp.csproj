@@ -59,10 +59,11 @@
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\SliderScript.cs" />
-    <Compile Include="Assets\Scripts\Gravitation\Ellipse.cs" />
-    <Compile Include="Assets\Scripts\Gravitation\EllipseRenderer.cs" />
+    <Compile Include="Assets\Scripts\Gravitation\Circle.cs" />
+    <Compile Include="Assets\Scripts\Gravitation\GravitationalMotion.cs" />
     <Compile Include="Assets\Scripts\Trajectories\Trajectory.cs" />
     <Compile Include="Assets\Scripts\OptionsMenu.cs" />
+    <Compile Include="Assets\Scripts\Collision\Collisions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
